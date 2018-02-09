@@ -71,11 +71,18 @@ namespace AsterNET.IO
 			set { initial = value; }
 		}
 
-		#region IsConnected 
-		/// <summary>
-		/// Returns the connection state of the socket.
-		/// </summary>
-		public bool IsConnected
+        public int ReadTimeout
+        {
+            get { return networkStream.ReadTimeout; }
+            set { networkStream.ReadTimeout = value; }
+            
+        }
+
+        #region IsConnected 
+        /// <summary>
+        /// Returns the connection state of the socket.
+        /// </summary>
+        public bool IsConnected
 		{
 			get { return tcpClient.Connected; }
 		}
