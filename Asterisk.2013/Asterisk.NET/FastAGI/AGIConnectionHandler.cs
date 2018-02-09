@@ -60,7 +60,9 @@ namespace AsterNET.FastAGI
             {
                 var reader = new AGIReader(socket);
                 var writer = new AGIWriter(socket);
-                AGIRequest request = reader.ReadRequest();
+                AGIRequest request;
+                using (var enlarger = new SocketConnectionTimeoutEnlarger(socket, 500))
+                    request = reader.ReadRequest();
 
                 //Added check for when the request is empty
                 //eg. telnet to the service 
